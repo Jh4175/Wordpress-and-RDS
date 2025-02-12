@@ -29,7 +29,6 @@ resource "aws_instance" "my_server" {
    instance_type = var.instance_type            # Use the instance type from variables
    key_name      = "${local.aws_key}"          # Specify the SSH key pair name
    user_data     = file("wp_install.sh")
-   subnet_id              = "subnet-08ab4bec5803d6a34"
    # Add tags to the EC2 instance for identification
    tags = {
      Name = "my ec2"
@@ -40,7 +39,6 @@ resource "aws_instance" "web" {
   ami                    = data.aws_ami.amazonlinux.id
   instance_type          = var.instance_type
   key_name               = local.aws_key  # Add SSH key for remote access
-  subnet_id              = "subnet-08ab4bec5803d6a34" 
 
   vpc_security_group_ids = [data.aws_security_group.allow_http.id]
 
